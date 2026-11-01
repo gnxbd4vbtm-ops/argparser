@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 	parser::ArgParser arguments;
 	arguments.setApplicationName("greet");
 	arguments.setApplicationDescription("Print a personalized greeting.");
-	arguments.addExample("greet --name Ada");
+	arguments.addExample("greet --name Mia");
 
 	std::string name = "world";
 	arguments.addArg({.shortFlag = "-n", .longFlag = "--name", .description = "Name to greet", .target = &name, .defaultValue = "world"});

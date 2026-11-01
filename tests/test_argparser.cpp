@@ -185,7 +185,7 @@ void test_help_and_empty_input()
     parser.setApplicationName("sample");
     parser.setColorsEnabled(false);
     parser.addArg({.longFlag = "--name", .description = "User name", .minValues = 1, .maxValues = 1});
-    parser.addExample("sample --name Ada");
+    parser.addExample("sample --name Mia");
     const auto help = parser.usage();
     assert(help.find("Usage: sample") != std::string::npos);
     assert(help.find("--help") != std::string::npos);
