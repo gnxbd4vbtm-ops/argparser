@@ -131,6 +131,9 @@ void test_required_unknown_and_duplicates()
     parser::ArgParser parser;
     parser.setAutomaticUsage(false);
     parser.addArg({.shortFlag = "-r", .longFlag = "--required", .required = true});
+    const auto help = parser.usage();
+    assert(help.find("--required*") != std::string::npos);
+    assert(help.find("[optional]") == std::string::npos);
     expect_throw<parser::required_argument_missing>([&] { parser.parse(std::vector<std::string>{}); });
     expect_throw<parser::unknown_argument>([&] { parser.parse(std::vector<std::string>{"--missing"}); });
     expect_throw<parser::duplicate_flag>([&] {

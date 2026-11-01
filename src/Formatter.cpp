@@ -24,7 +24,7 @@ std::string Formatter::format(const std::vector<Argument> &arguments,
 
 	std::size_t flagWidth = 0;
 	for (const auto &argument : arguments)
-		flagWidth = std::max(flagWidth, flags(argument).size() + (argument.minValues ? argument.typeName.size() + 3 : 0));
+		flagWidth = std::max(flagWidth, flags(argument).size() + (argument.minValues ? argument.typeName.size() + 3 : 0) + (argument.required ? 1 : 0));
 	flagWidth = std::min<std::size_t>(flagWidth, 40);
 	std::size_t terminalWidth = 80;
 	if (const char *columns = std::getenv("COLUMNS"))
@@ -48,12 +48,13 @@ std::string Formatter::format(const std::vector<Argument> &arguments,
 		std::string label = flags(argument);
 		if (argument.minValues > 0)
 			label += " <" + (argument.typeName.empty() ? std::string("VALUE") : argument.typeName) + ">";
+		if (argument.required)
+			label += '*';
 		std::string prefix = "  " + color("1;32", label);
 		const auto descriptionColumn = std::max(flagWidth + 4, label.size() + 3);
 		if (label.size() + 2 < descriptionColumn)
 			prefix += std::string(descriptionColumn - label.size() - 2, ' ');
 		std::string description = argument.description;
-		description += argument.required ? " [required]" : " [optional]";
 		if (!argument.defaultValue.empty())
 			description += " [default: " + argument.defaultValue + ']';
 		if (argument.minValues != argument.maxValues && argument.minValues > 0)

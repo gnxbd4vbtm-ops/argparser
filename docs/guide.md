@@ -116,10 +116,12 @@ positional values are errors.
 `usage()` returns generated usage text and `printHelp()` writes it to a stream.
 The parser recognizes `-h` and `--help` without reserving those names in the
 registration table. Help includes registered options, required/optional status,
-types, configured default labels, and examples. Set the application name and
-description with `setApplicationName` and `setApplicationDescription`, and add
-examples with `addExample`. Set colors with `setColorsEnabled`; presence of the
-`NO_COLOR` environment variable always disables ANSI color.
+types, configured default labels, and examples. Required options are marked
+with `*` after their option label; optional options have no marker. Set the
+application name and description with `setApplicationName` and
+`setApplicationDescription`, and add examples with `addExample`. Set colors
+with `setColorsEnabled`; presence of the `NO_COLOR` environment variable always
+disables ANSI color.
 
 `defaultValue` is display metadata only: it is shown in help but does not insert
 a value, satisfy `required`, or initialize a target.
