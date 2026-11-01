@@ -1,3 +1,4 @@
+#include "parser/Exceptions.hpp"
 #include <parser/ArgParser.hpp>
 
 #include <iostream>
